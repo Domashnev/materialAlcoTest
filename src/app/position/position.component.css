@@ -1,0 +1,33 @@
+.mat-form-field  {
+    margin-left: 8px;
+  }
+.mat-expansion-panel {
+    margin: 8px;
+}
+.widecontainer{
+    width:100%;
+    display: grid;
+    grid-template-columns: 7fr 1fr;
+    justify-content: stretch;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.widefield{
+    width: 80%;
+}
+.labelbigger{
+    font-size: initial;
+}
+.barcode {
+    font-size: small;
+}
+.barmessage {
+    text-align: center;
+    padding: .75rem 1.25rem;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}

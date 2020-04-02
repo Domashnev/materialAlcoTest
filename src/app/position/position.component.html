@@ -1,0 +1,101 @@
+<mat-expansion-panel [(expanded)]="expanded">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{product?.fullName}}</mat-panel-title>
+    </mat-expansion-panel-header>
+    
+    <mat-card>
+    <mat-card-content>
+    <mat-form-field >
+        <mat-label>Количество</mat-label>
+        <input matInput type="number" [(ngModel)]="position.quantity">
+    </mat-form-field>
+
+    <div class="widecontainer">
+      <mat-form-field class="barcode">
+        <mat-label class="labelbigger">Коды</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option  class="barcode" 
+          *ngFor="let code of position.barcodeInfo; let indexCode = index;" 
+          [value]="code">
+            {{indexCode+1}}. {{code}}
+          </mat-option>
+        </mat-select>      
+      </mat-form-field>
+      <button mat-raised-button color="warn" [disabled]="!selected"
+        (click)="deleteBarcode(selected.value);">
+        Удалить</button>
+    </div>
+
+    <div class="widecontainer">
+    <div *ngIf="barcodeMessage" class="barmessage">{{barcodeMessage}}</div>
+    </div>
+
+    <div class="widecontainer">
+      <mat-form-field class="barcode">
+        <mat-label class="labelbigger">Новый код</mat-label>
+        <input class="barcode" [formControl]="codeFormControl" matInput 
+        name="insertde" #insertCode pattern="^[0-9|a-z|A-Z]*$">
+        <mat-error *ngIf="codeFormControl.hasError('pattern')">
+            Допустимы только буквы и цифры</mat-error>  
+     </mat-form-field>
+
+     <button mat-raised-button color="primary" 
+        (click)="addBarcode(insertCode.value); insertCode.value='';"
+        [disabled]="!insertCode.value || codeFormControl.hasError('pattern') ">
+        Добавить</button>
+    </div>
+    </mat-card-content>
+    </mat-card>
+    <br>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-subtitle>Продукция</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+        <mat-form-field >
+            <mat-label>Наименование</mat-label>
+            <input matInput disabled [ngModel]="product?.fullName">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Алкокод</mat-label>
+            <input matInput disabled [ngModel]="product?.alcCode">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Код продукции</mat-label>
+          <input matInput disabled [ngModel]="product?.productVCode" max="3">
+        </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    <br>
+
+    <mat-card>
+    <mat-card-header>
+        <mat-card-subtitle>Производитель</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+    <mat-form-field >
+        <mat-label>ID</mat-label>
+        <input matInput disabled [ngModel]="product?.producer.clientId">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Короткое</mat-label>
+        <input matInput disabled [ngModel]="product?.producer.shortName">
+    </mat-form-field> 
+    <mat-form-field class="widefield">
+        <mat-label>Полное название</mat-label>
+        <input matInput disabled 
+        [ngModel]="product?.producer.fullName">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Код страны</mat-label>
+        <input matInput disabled  [ngModel]="product?.producer.address.country">
+    </mat-form-field>
+    <mat-form-field class="widefield">
+        <mat-label>Адрес</mat-label>
+        <input matInput disabled [ngModel]="product?.producer.address.description">
+    </mat-form-field>  
+    </mat-card-content>
+    </mat-card>
+
+</mat-expansion-panel>

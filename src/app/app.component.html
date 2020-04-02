@@ -1,0 +1,64 @@
+  <mat-card>
+    <mat-card-header>
+        <mat-card-title>Постановка продукции на баланс</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+  <mat-form-field>
+    <mat-label>Дата постановки на баланс</mat-label>
+    <input matInput [matDatepicker]="picker" name="actDate" 
+    [(ngModel)]="header.actDate" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+<mat-form-field>
+  <mat-label>Номер документа</mat-label>
+  <input matInput maxlength="5" required name="number" pattern="[0-9]*"
+  [(ngModel)]="header.number" #hnumber>
+  <mat-error *ngIf="!hnumber.valid">Введите от 1 до 5 цифр</mat-error>
+</mat-form-field>
+<br>
+
+<mat-form-field>
+  <mat-label>Тип постановки на баланс</mat-label>
+  <input matInput name="htype" #htype placeholder="Маркированная продукция"
+  [(ngModel)]="header.typeChargeOn" required> 
+  <mat-error *ngIf="!htype">Укажите тип</mat-error>
+</mat-form-field>
+
+<mat-form-field class="widefield">
+  <mat-label>Продукция</mat-label>
+  <mat-select [formControl]="productControl" multiple required
+  (selectionChange)="selectPosition($event.value)" [(value)]="selected">
+    <mat-option *ngFor="let pos of allPositions;" [value]="pos">
+      {{pos?.product.fullName}}</mat-option>
+  </mat-select>
+  <mat-error *ngIf="productControl.hasError('required')">Выберите продукт</mat-error>
+</mat-form-field>
+
+    <br>
+    <button mat-raised-button color="primary" type="submit" 
+    [disabled]="!f.valid || !selected">Сформировать акт</button>
+
+    <button *ngIf="resultXML" mat-raised-button color="primary"
+        (click)="clearForm(f);">Очистить форму</button>
+    
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-accordion>
+  <app-position *ngFor="let position of selectedPositions" 
+  [position]="position"></app-position>
+</mat-accordion>
+
+<mat-card *ngIf="resultXML">
+  <mat-card-content>
+    <a [href]="resultXMLFileUrl" download="registrationAct.xml">Загрузить XML файл</a> 
+
+    <hr>
+    <pre>{{resultXML}}</pre>
+  </mat-card-content>
+</mat-card>

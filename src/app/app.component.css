@@ -1,0 +1,11 @@
+button, .mat-form-field, .mat-card {
+    margin: 10px;
+}
+
+.mat-card {
+    padding: 10px;
+}
+
+.widefield{
+    width: 60%;
+}

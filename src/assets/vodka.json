@@ -1,0 +1,44 @@
+ [
+			{
+				"fullName": "\"Водка Ивановская\"",
+				"alcCode": "0000000000108201801",
+				"producer": {
+					"clientId": "030000424092",
+					"fullName": "АКЦИОНЕРНОЕ ОБЩЕСТВО \"Водка Ивановская\"",
+					"shortName": "АО \"Водка Ивановская\"",
+					"address": {
+						"country": "643",
+						"description": "155901, Ивановская обл, Шуйский р-н, г Иваново, ул Привокзальная, д 18"
+					}
+				},
+				"productVCode": "500"
+			},
+			{
+				"fullName": "\"Шуйская водка\"",
+				"alcCode": "0000000000256400168",
+				"producer": {
+					"clientId": "030000424092",
+					"fullName": "АКЦИОНЕРНОЕ ОБЩЕСТВО \"ШУЙСКАЯ ВОДКА\"",
+					"shortName": "АО \"ШУЙСКАЯ ВОДКА\"",
+					"address": {
+						"country": "643",
+						"description": "155901, Ивановская обл, Шуйский р-н, г Шуя, ул Завокзальная, д 17"
+					}
+				},
+				"productVCode": "500"
+			},
+			{
+				"fullName": "Vecchia Grappa di Prosecco",
+				"alcCode": "0000000000256400169",
+				"producer": {
+					"clientId": "030000424000",
+					"fullName": "Andrea Da Ponte",
+					"shortName": "Da Ponte",
+					"address": {
+						"country": "993",
+						"description": "Corso Mazzini, 14 - 31015 Conegliano (TV)"
+					}
+				},
+				"productVCode": "310"
+			}
+]
